@@ -1,0 +1,532 @@
+here<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>معايدة عباس</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#ffc6df;
+  font-family:"Cairo",sans-serif;
+  overflow:hidden;
+}
+
+/* دخان وردي */
+.smoke-layer{
+  position:fixed;inset:0;
+  pointer-events:none;overflow:hidden;
+  z-index:0;
+}
+.smoke{
+  position:absolute;
+  width:460px;height:460px;
+  background:radial-gradient(circle,rgba(255,188,214,.8),transparent 70%);
+  filter:blur(40px);opacity:.55;
+  animation:smoke 18s ease-in-out infinite alternate;
+}
+.smoke:nth-child(1){top:-80px;left:-80px;}
+.smoke:nth-child(2){bottom:-120px;right:-80px;animation-delay:6s;}
+.smoke:nth-child(3){top:30%;right:5%;animation-delay:10s;}
+@keyframes smoke{
+  0%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(40px,-40px) scale(1.1);}
+  100%{transform:translate(-30px,30px) scale(1.05);}
+}
+
+/* شاشة البداية */
+.start{
+  position:fixed;inset:0;
+  background:radial-gradient(circle,#ffe6f3,#ffb5d6);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  z-index:5;text-align:center;
+}
+.start p{
+  font-size:1.5rem;color:#a00054;
+  font-weight:900;margin-bottom:18px;
+}
+.start button{
+  padding:14px 48px;border:none;border-radius:999px;
+  background:#ff4d88;color:white;
+  font-size:1.2rem;font-weight:800;
+  cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.22);
+  transition:.2s;
+}
+.start button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 26px rgba(0,0,0,.28);
+}
+
+/* مشهد الشخصية الأولى */
+.scene1{
+  position:fixed;inset:0;
+  display:none;align-items:center;justify-content:center;
+  z-index:3;
+}
+.character1{
+  width:260px;height:360px;
+  border-radius:40px;
+  background:radial-gradient(circle at top,#ffe5f1,#ff8db7);
+  box-shadow:0 18px 36px rgba(0,0,0,.3);
+  display:flex;align-items:center;justify-content:center;
+  transform:scale(0.7);
+  opacity:0;
+}
+.character1-inner{
+  position:relative;
+  width:180px;height:280px;
+}
+.head1{
+  position:absolute;
+  top:20px;left:50%;
+  transform:translateX(-50%);
+  width:120px;height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 20%,#fff,#f5c9b0);
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
+}
+.hair1{
+  position:absolute;
+  top:-8px;left:6px;right:6px;
+  height:60px;
+  background:linear-gradient(135deg,#1e1225,#3b243f);
+  border-radius:60px 60px 40px 40px;
+}
+.eye1{
+  position:absolute;
+  top:50px;width:14px;height:14px;
+  border-radius:50%;
+  background:#221220;
+  box-shadow:0 0 0 2px rgba(255,255,255,.85);
+}
+.eye1.left{left:30px;}
+.eye1.right{right:30px;}
+.mouth1{
+  position:absolute;
+  bottom:28px;left:50%;
+  transform:translateX(-50%);
+  width:40px;height:22px;
+  background:#ff99b9;
+  border-radius:0 0 40px 40px;
+  overflow:hidden;
+  animation:talk1 1s ease-in-out infinite;
+}
+.mouth1-inner{
+  position:absolute;inset:4px;
+  background:#d6336c;
+  border-radius:0 0 32px 32px;
+}
+.cheek1{
+  position:absolute;
+  top:75px;width:22px;height:12px;
+  border-radius:50%;
+  background:rgba(255,120,170,.7);
+  filter:blur(1px);
+}
+.cheek1.left{left:18px;}
+.cheek1.right{right:18px;}
+@keyframes talk1{
+  0%{height:10px;}
+  50%{height:20px;}
+  100%{height:12px;}
+}
+.body1{
+  position:absolute;
+  bottom:0;left:50%;
+  transform:translateX(-50%);
+  width:115px;height:140px;
+  border-radius:70px;
+  background:linear-gradient(180deg,#ff4d88,#c52d63);
+  box-shadow:0 14px 26px rgba(0,0,0,.3);
+}
+.arm1{
+  position:absolute;
+  top:120px;width:18px;height:70px;
+  border-radius:24px;
+  background:#f5c9b0;
+  transform-origin:top;
+  animation:armWave1 .7s ease-in-out infinite alternate;
+}
+.arm1.left{left:18px;}
+.arm1.right{right:18px;animation-direction:reverse;}
+@keyframes armWave1{
+  0%{transform:rotate(12deg);}
+  100%{transform:rotate(-14deg);}
+}
+.playChar1{
+  animation:zoomChar1 4s ease-out forwards;
+}
+@keyframes zoomChar1{
+  0%{transform:scale(0.7);opacity:0;}
+  20%{opacity:1;}
+  60%{transform:scale(1.4);}
+  100%{transform:scale(1.8);opacity:0;}
+}
+.speech1{
+  position:absolute;top:35px;
+  background:white;padding:10px 18px;
+  border-radius:22px;font-size:1.2rem;
+  font-weight:900;color:#8b0044;
+  box-shadow:0 8px 22px rgba(0,0,0,.15);
+  opacity:0;
+  animation:speak1 3s ease forwards;
+}
+.speech1::after{
+  content:"";position:absolute;
+  bottom:-10px;left:50%;
+  transform:translateX(-50%) rotate(45deg);
+  width:18px;height:18px;background:white;
+}
+@keyframes speak1{
+  0%{opacity:0;transform:translateY(10px);}
+  20%{opacity:1;transform:translateY(0);}
+  80%{opacity:1;}
+  100%{opacity:0;}
+}
+
+/* مشهد الشخصية الثانية */
+.scene2{
+  position:fixed;inset:0;
+  display:none;align-items:center;justify-content:center;
+  z-index:3;
+}
+.character2{
+  width:260px;height:360px;
+  border-radius:40px;
+  background:radial-gradient(circle at top,#ffe9dd,#ffb088);
+  box-shadow:0 18px 36px rgba(0,0,0,.3);
+  display:flex;align-items:center;justify-content:center;
+  transform:translateY(80px) scale(0.3);
+  opacity:0;
+}
+.character2-inner{
+  position:relative;
+  width:180px;height:280px;
+}
+.head2{
+  position:absolute;
+  top:22px;left:50%;
+  transform:translateX(-50%);
+  width:118px;height:118px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 20%,#fff,#f2c29d);
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
+}
+.hair2{
+  position:absolute;
+  top:-6px;left:5px;right:5px;
+  height:58px;
+  background:linear-gradient(135deg,#24121e,#4b2a35);
+  border-radius:60px 60px 45px 45px;
+}
+.eye2{
+  position:absolute;
+  top:48px;width:14px;height:14px;
+  border-radius:50%;
+  background:#1f111b;
+  box-shadow:0 0 0 2px rgba(255,255,255,.85);
+}
+.eye2.left{left:28px;}
+.eye2.right{right:28px;}
+.mouth2{
+  position:absolute;
+  bottom:30px;left:50%;
+  transform:translateX(-50%);
+  width:44px;height:22px;
+  background:#ff8fa8;
+  border-radius:0 0 44px 44px;
+  overflow:hidden;
+  animation:talk2 1s ease-in-out infinite;
+}
+.mouth2-inner{
+  position:absolute;inset:4px;
+  background:#d43c63;
+  border-radius:0 0 34px 34px;
+}
+.cheek2{
+  position:absolute;
+  top:74px;width:22px;height:12px;
+  border-radius:50%;
+  background:rgba(255,120,170,.7);
+  filter:blur(1px);
+}
+.cheek2.left{left:18px;}
+.cheek2.right{right:18px;}
+@keyframes talk2{
+  0%{height:10px;}
+  50%{height:20px;}
+  100%{height:12px;}
+}
+.body2{
+  position:absolute;
+  bottom:0;left:50%;
+  transform:translateX(-50%);
+  width:120px;height:145px;
+  border-radius:70px;
+  background:linear-gradient(180deg,#ff9150,#e45b3a);
+  box-shadow:0 14px 26px rgba(0,0,0,.3);
+}
+.arm2{
+  position:absolute;
+  top:120px;width:18px;height:70px;
+  border-radius:24px;
+  background:#f2c29d;
+  transform-origin:top;
+  animation:armWave2 .7s ease-in-out infinite alternate;
+}
+.arm2.left{left:18px;}
+.arm2.right{right:18px;animation-direction:reverse;}
+@keyframes armWave2{
+  0%{transform:rotate(20deg);}
+  100%{transform:rotate(-18deg);}
+}
+.playChar2{
+  animation:runHug 4s ease-out forwards;
+}
+@keyframes runHug{
+  0%{transform:translateY(80px) scale(0.3);opacity:0;}
+  15%{opacity:1;}
+  50%{transform:translateY(20px) scale(0.9);}
+  75%{transform:translateY(0) scale(1.3);}
+  100%{transform:translateY(-5px) scale(1.5);opacity:1;}
+}
+.hug-text{
+  position:absolute;
+  top:25px;
+  font-size:1.4rem;
+  font-weight:900;
+  color:#7a003a;
+  background:rgba(255,255,255,.92);
+  padding:8px 16px;
+  border-radius:20px;
+  box-shadow:0 6px 18px rgba(0,0,0,.16);
+  opacity:0;
+}
+.show-hug{
+  animation:hugIn 2s ease forwards;
+}
+@keyframes hugIn{
+  0%{opacity:0;transform:translateY(-10px);}
+  30%{opacity:1;transform:translateY(0);}
+  100%{opacity:1;}
+}
+
+/* شاشة النص */
+.text-screen{
+  position:fixed;inset:0;
+  background:rgba(255,255,255,.96);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;z-index:4;
+}
+.text-box{
+  width:100%;max-width:900px;
+  background:white;border-radius:28px;
+  padding:30px 20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.24);
+}
+#excitedTitle{
+  font-size:1.8rem;
+  font-weight:900;
+  color:#a00054;
+  text-align:center;
+  margin-bottom:20px;
+  animation:bounceTitle 1.3s ease-in-out 0.3s 3;
+}
+@keyframes bounceTitle{
+  0%{transform:translateY(0);}
+  30%{transform:translateY(-10px);}
+  60%{transform:translateY(0);}
+  100%{transform:translateY(-5px);}
+}
+#typing{
+  font-size:1.6rem;
+  font-weight:900;
+  color:#5a0028;
+  line-height:2.3;
+  white-space:pre-wrap;
+}
+.cursor{
+  display:inline-block;
+  width:16px;
+  font-size:2rem;
+  animation:blink 1s step-start infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+@media(max-width:600px){
+  .character1,
+  .character2{transform:scale(0.75);}
+  #typing{font-size:1.3rem;}
+  #excitedTitle{font-size:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- دخان وردي -->
+<div class="smoke-layer">
+  <div class="smoke"></div>
+  <div class="smoke"></div>
+  <div class="smoke"></div>
+</div>
+
+<!-- شاشة البداية -->
+<div class="start" id="startScreen">
+  <p>جاهزه للمعايده يا فرحتي؟ 💋</p>
+  <button id="startBtn">جاهزه للمعايده💋</button>
+</div>
+
+<!-- مشهد الشخصية الأولى -->
+<div class="scene1" id="scene1">
+  <div class="character1" id="char1">
+    <div class="character1-inner">
+      <div class="head1">
+        <div class="hair1"></div>
+        <div class="eye1 left"></div>
+        <div class="eye1 right"></div>
+        <div class="cheek1 left"></div>
+        <div class="cheek1 right"></div>
+        <div class="mouth1"><div class="mouth1-inner"></div></div>
+      </div>
+      <div class="body1"></div>
+      <div class="arm1 left"></div>
+      <div class="arm1 right"></div>
+    </div>
+  </div>
+  <div class="speech1">جاهزه للمعايده يا روح عباس؟ 💋</div>
+</div>
+
+<!-- مشهد الشخصية الثانية -->
+<div class="scene2" id="scene2">
+  <div class="character2" id="char2">
+    <div class="character2-inner">
+      <div class="head2">
+        <div class="hair2"></div>
+        <div class="eye2 left"></div>
+        <div class="eye2 right"></div>
+        <div class="cheek2 left"></div>
+        <div class="cheek2 right"></div>
+        <div class="mouth2"><div class="mouth2-inner"></div></div>
+      </div>
+      <div class="body2"></div>
+      <div class="arm2 left"></div>
+      <div class="arm2 right"></div>
+    </div>
+  </div>
+  <div class="hug-text" id="hugText">هاذ حضن من عباس 🤍🫂</div>
+</div>
+
+<!-- شاشة النص -->
+<div class="text-screen" id="textScreen">
+  <div class="text-box">
+    <div id="excitedTitle">جاهزه تشوفين معايدتج بحماسس؟ 🤍</div>
+    <div id="typing"></div><span class="cursor">|</span>
+  </div>
+</div>
+
+<script>
+const startBtn    = document.getElementById("startBtn");
+const startScreen = document.getElementById("startScreen");
+const scene1      = document.getElementById("scene1");
+const scene2      = document.getElementById("scene2");
+const char1       = document.getElementById("char1");
+const char2       = document.getElementById("char2");
+const hugText     = document.getElementById("hugText");
+const textScreen  = document.getElementById("textScreen");
+const typingEl    = document.getElementById("typing");
+
+const fullText = `كل عام وانتي بالف خير يروح عباس انتي 
+كل عام وانتي كل اعوامي وسنيني كل عام وانتي فرحتي كل عام وانا احبج كلش كلش احبج كل عام وانتي الشي الصح الوحيد من بين كل هلسنين احب اكلج بهلسنه الجديده الله يديمج الي بهلسنه وبكل بسنه ويحفضج الي احب اكلج انتي سند حقيقي الي وماريد شي غير فرحتج بكل هلسنين كل عام واحنا بكل عام يقترب لقائنا وخطوبتنا احبج بكل سنه وبكل ثانيه احبج بهلسنه وبكل سنه ربي يديمنا للسنين الجايه كل عام وانتي درعي ووطني جنتيلي سند بهلسنه وكفتي وياي على اغلاطي وعلى مزاجي ما مليتي منه وعلى كلشي 
+ربي يديمنا لبعض مره والف مره
+بهلسنه نورتي حياتي وحليتيها
+بهلسنه توردت عيوني بدخولج وماريد شي غير وجودج من هلدنيه
+احبج هلسنه وفد 1800000 سنه ليكدام هم احبج اخر لعمر وما بعد العمر🥹💋💋
+
+احبج بكد لكره الارضيه كلها يا فرحتي بهلسنه يا هديتي من رب العالمين بهلسنه ربي يديمج الي ويديملي ضحكتج وفرحتج الي ماريد شي غيرهن
+
+احبج هواي هواي حبيبج وابوج عباس💋💋🫂`;
+
+let index = 0;
+let displayText = "";
+
+// صوت كتابة هادئ (Web Audio)
+let audioCtx = null;
+function playTypeSound(char){
+  if (!char || char.trim()==="") return;
+  if (!audioCtx){
+    try{
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }catch(e){
+      return;
+    }
+  }
+  const osc  = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  const now  = audioCtx.currentTime;
+
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(650, now);
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.linearRampToValueAtTime(0.035, now + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start(now);
+  osc.stop(now + 0.14);
+}
+
+const charDelay = 110; // هادي
+
+function typeNextChar(){
+  if (index >= fullText.length) return;
+
+  const ch = fullText.charAt(index);
+
+  if (ch === "\n"){
+    displayText += "\n";
+  }else{
+    displayText += ch;
+  }
+
+  typingEl.textContent = displayText;
+  playTypeSound(ch);
+
+  index++;
+  setTimeout(typeNextChar, charDelay);
+}
+
+startBtn.addEventListener("click", () => {
+  startScreen.style.display = "none";
+
+  // الشخصية الأولى
+  scene1.style.display = "flex";
+  char1.classList.add("playChar1");
+
+  setTimeout(() => {
+    scene1.style.display = "none";
+
+    // الشخصية الثانية
+    scene2.style.display = "flex";
+    char2.classList.add("playChar2");
+
+    setTimeout(() => {
+      hugText.classList.add("show-hug");
+    }, 1200);
+
+    // بعد الحضن → صفحة النص
+    setTimeout(() => {
+      scene2.style.display = "none";
+      textScreen.style.display = "flex";
+      typeNextChar();
+    }, 4200);
+
+  }, 4200);
+});
+</script>
+
+</body>
+  </html>
